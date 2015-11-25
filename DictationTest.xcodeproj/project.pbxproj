@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C888A52F1C0640330044E737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A52E1C0640330044E737 /* AppDelegate.swift */; };
+		C888A5311C0640330044E737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A5301C0640330044E737 /* ViewController.swift */; };
+		C888A5341C0640330044E737 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C888A5321C0640330044E737 /* Main.storyboard */; };
+		C888A5361C0640330044E737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C888A5351C0640330044E737 /* Assets.xcassets */; };
+		C888A5391C0640330044E737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C888A5371C0640330044E737 /* LaunchScreen.storyboard */; };
+		C888A5441C0640330044E737 /* DictationTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A5431C0640330044E737 /* DictationTestTests.swift */; };
+		C888A54F1C0640330044E737 /* DictationTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A54E1C0640330044E737 /* DictationTestUITests.swift */; };
+		C888A5541C0640330044E737 /* DictationTest WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C888A5531C0640330044E737 /* DictationTest WatchKit App.app */; };
+		C888A55A1C0640330044E737 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C888A5581C0640330044E737 /* Interface.storyboard */; };
+		C888A55C1C0640330044E737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C888A55B1C0640330044E737 /* Assets.xcassets */; };
+		C888A5631C0640330044E737 /* DictationTest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C888A5621C0640330044E737 /* DictationTest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C888A56A1C0640330044E737 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A5691C0640330044E737 /* InterfaceController.swift */; };
+		C888A56C1C0640330044E737 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A56B1C0640330044E737 /* ExtensionDelegate.swift */; };
+		C888A56E1C0640330044E737 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A56D1C0640330044E737 /* NotificationController.swift */; };
+		C888A5701C0640330044E737 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A56F1C0640330044E737 /* GlanceController.swift */; };
+		C888A5721C0640330044E737 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A5711C0640330044E737 /* ComplicationController.swift */; };
+		C888A5741C0640330044E737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C888A5731C0640330044E737 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C888A5401C0640330044E737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C888A5231C0640330044E737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C888A52A1C0640330044E737;
+			remoteInfo = DictationTest;
+		};
+		C888A54B1C0640330044E737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C888A5231C0640330044E737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C888A52A1C0640330044E737;
+			remoteInfo = DictationTest;
+		};
+		C888A5551C0640330044E737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C888A5231C0640330044E737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C888A5521C0640330044E737;
+			remoteInfo = "DictationTest WatchKit App";
+		};
+		C888A5641C0640330044E737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C888A5231C0640330044E737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C888A5611C0640330044E737;
+			remoteInfo = "DictationTest WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C888A57B1C0640330044E737 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C888A5631C0640330044E737 /* DictationTest WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A57F1C0640330044E737 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C888A5541C0640330044E737 /* DictationTest WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C888A52B1C0640330044E737 /* DictationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DictationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C888A52E1C0640330044E737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C888A5301C0640330044E737 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C888A5331C0640330044E737 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C888A5351C0640330044E737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C888A5381C0640330044E737 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C888A53A1C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C888A53F1C0640330044E737 /* DictationTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DictationTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C888A5431C0640330044E737 /* DictationTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationTestTests.swift; sourceTree = "<group>"; };
+		C888A5451C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C888A54A1C0640330044E737 /* DictationTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DictationTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C888A54E1C0640330044E737 /* DictationTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationTestUITests.swift; sourceTree = "<group>"; };
+		C888A5501C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C888A5531C0640330044E737 /* DictationTest WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DictationTest WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C888A5591C0640330044E737 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		C888A55B1C0640330044E737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C888A55D1C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C888A5621C0640330044E737 /* DictationTest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DictationTest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C888A5681C0640330044E737 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		C888A5691C0640330044E737 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		C888A56B1C0640330044E737 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		C888A56D1C0640330044E737 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		C888A56F1C0640330044E737 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		C888A5711C0640330044E737 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		C888A5731C0640330044E737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C888A5751C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C888A5281C0640330044E737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A53C1C0640330044E737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A5471C0640330044E737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A55F1C0640330044E737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C888A5221C0640330044E737 = {
+			isa = PBXGroup;
+			children = (
+				C888A52D1C0640330044E737 /* DictationTest */,
+				C888A5421C0640330044E737 /* DictationTestTests */,
+				C888A54D1C0640330044E737 /* DictationTestUITests */,
+				C888A5571C0640330044E737 /* DictationTest WatchKit App */,
+				C888A5661C0640330044E737 /* DictationTest WatchKit Extension */,
+				C888A52C1C0640330044E737 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C888A52C1C0640330044E737 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C888A52B1C0640330044E737 /* DictationTest.app */,
+				C888A53F1C0640330044E737 /* DictationTestTests.xctest */,
+				C888A54A1C0640330044E737 /* DictationTestUITests.xctest */,
+				C888A5531C0640330044E737 /* DictationTest WatchKit App.app */,
+				C888A5621C0640330044E737 /* DictationTest WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C888A52D1C0640330044E737 /* DictationTest */ = {
+			isa = PBXGroup;
+			children = (
+				C888A52E1C0640330044E737 /* AppDelegate.swift */,
+				C888A5301C0640330044E737 /* ViewController.swift */,
+				C888A5321C0640330044E737 /* Main.storyboard */,
+				C888A5351C0640330044E737 /* Assets.xcassets */,
+				C888A5371C0640330044E737 /* LaunchScreen.storyboard */,
+				C888A53A1C0640330044E737 /* Info.plist */,
+			);
+			path = DictationTest;
+			sourceTree = "<group>";
+		};
+		C888A5421C0640330044E737 /* DictationTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				C888A5431C0640330044E737 /* DictationTestTests.swift */,
+				C888A5451C0640330044E737 /* Info.plist */,
+			);
+			path = DictationTestTests;
+			sourceTree = "<group>";
+		};
+		C888A54D1C0640330044E737 /* DictationTestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C888A54E1C0640330044E737 /* DictationTestUITests.swift */,
+				C888A5501C0640330044E737 /* Info.plist */,
+			);
+			path = DictationTestUITests;
+			sourceTree = "<group>";
+		};
+		C888A5571C0640330044E737 /* DictationTest WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				C888A5581C0640330044E737 /* Interface.storyboard */,
+				C888A55B1C0640330044E737 /* Assets.xcassets */,
+				C888A55D1C0640330044E737 /* Info.plist */,
+			);
+			path = "DictationTest WatchKit App";
+			sourceTree = "<group>";
+		};
+		C888A5661C0640330044E737 /* DictationTest WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C888A5691C0640330044E737 /* InterfaceController.swift */,
+				C888A56B1C0640330044E737 /* ExtensionDelegate.swift */,
+				C888A56D1C0640330044E737 /* NotificationController.swift */,
+				C888A56F1C0640330044E737 /* GlanceController.swift */,
+				C888A5711C0640330044E737 /* ComplicationController.swift */,
+				C888A5731C0640330044E737 /* Assets.xcassets */,
+				C888A5751C0640330044E737 /* Info.plist */,
+				C888A5671C0640330044E737 /* Supporting Files */,
+			);
+			path = "DictationTest WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		C888A5671C0640330044E737 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C888A5681C0640330044E737 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C888A52A1C0640330044E737 /* DictationTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C888A5801C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest" */;
+			buildPhases = (
+				C888A5271C0640330044E737 /* Sources */,
+				C888A5281C0640330044E737 /* Frameworks */,
+				C888A5291C0640330044E737 /* Resources */,
+				C888A57F1C0640330044E737 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C888A5561C0640330044E737 /* PBXTargetDependency */,
+			);
+			name = DictationTest;
+			productName = DictationTest;
+			productReference = C888A52B1C0640330044E737 /* DictationTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C888A53E1C0640330044E737 /* DictationTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C888A5831C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTestTests" */;
+			buildPhases = (
+				C888A53B1C0640330044E737 /* Sources */,
+				C888A53C1C0640330044E737 /* Frameworks */,
+				C888A53D1C0640330044E737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C888A5411C0640330044E737 /* PBXTargetDependency */,
+			);
+			name = DictationTestTests;
+			productName = DictationTestTests;
+			productReference = C888A53F1C0640330044E737 /* DictationTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C888A5491C0640330044E737 /* DictationTestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C888A5861C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTestUITests" */;
+			buildPhases = (
+				C888A5461C0640330044E737 /* Sources */,
+				C888A5471C0640330044E737 /* Frameworks */,
+				C888A5481C0640330044E737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C888A54C1C0640330044E737 /* PBXTargetDependency */,
+			);
+			name = DictationTestUITests;
+			productName = DictationTestUITests;
+			productReference = C888A54A1C0640330044E737 /* DictationTestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C888A5521C0640330044E737 /* DictationTest WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C888A57C1C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest WatchKit App" */;
+			buildPhases = (
+				C888A5511C0640330044E737 /* Resources */,
+				C888A57B1C0640330044E737 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C888A5651C0640330044E737 /* PBXTargetDependency */,
+			);
+			name = "DictationTest WatchKit App";
+			productName = "DictationTest WatchKit App";
+			productReference = C888A5531C0640330044E737 /* DictationTest WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		C888A5611C0640330044E737 /* DictationTest WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C888A5781C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest WatchKit Extension" */;
+			buildPhases = (
+				C888A55E1C0640330044E737 /* Sources */,
+				C888A55F1C0640330044E737 /* Frameworks */,
+				C888A5601C0640330044E737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DictationTest WatchKit Extension";
+			productName = "DictationTest WatchKit Extension";
+			productReference = C888A5621C0640330044E737 /* DictationTest WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C888A5231C0640330044E737 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Small, Jeff";
+				TargetAttributes = {
+					C888A52A1C0640330044E737 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					C888A53E1C0640330044E737 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = C888A52A1C0640330044E737;
+					};
+					C888A5491C0640330044E737 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = C888A52A1C0640330044E737;
+					};
+					C888A5521C0640330044E737 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					C888A5611C0640330044E737 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = C888A5261C0640330044E737 /* Build configuration list for PBXProject "DictationTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C888A5221C0640330044E737;
+			productRefGroup = C888A52C1C0640330044E737 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C888A52A1C0640330044E737 /* DictationTest */,
+				C888A53E1C0640330044E737 /* DictationTestTests */,
+				C888A5491C0640330044E737 /* DictationTestUITests */,
+				C888A5521C0640330044E737 /* DictationTest WatchKit App */,
+				C888A5611C0640330044E737 /* DictationTest WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C888A5291C0640330044E737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A5391C0640330044E737 /* LaunchScreen.storyboard in Resources */,
+				C888A5361C0640330044E737 /* Assets.xcassets in Resources */,
+				C888A5341C0640330044E737 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A53D1C0640330044E737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A5481C0640330044E737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A5511C0640330044E737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A55C1C0640330044E737 /* Assets.xcassets in Resources */,
+				C888A55A1C0640330044E737 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A5601C0640330044E737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A5741C0640330044E737 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C888A5271C0640330044E737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A5311C0640330044E737 /* ViewController.swift in Sources */,
+				C888A52F1C0640330044E737 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A53B1C0640330044E737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A5441C0640330044E737 /* DictationTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A5461C0640330044E737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A54F1C0640330044E737 /* DictationTestUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C888A55E1C0640330044E737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C888A56E1C0640330044E737 /* NotificationController.swift in Sources */,
+				C888A56C1C0640330044E737 /* ExtensionDelegate.swift in Sources */,
+				C888A5721C0640330044E737 /* ComplicationController.swift in Sources */,
+				C888A56A1C0640330044E737 /* InterfaceController.swift in Sources */,
+				C888A5701C0640330044E737 /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C888A5411C0640330044E737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C888A52A1C0640330044E737 /* DictationTest */;
+			targetProxy = C888A5401C0640330044E737 /* PBXContainerItemProxy */;
+		};
+		C888A54C1C0640330044E737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C888A52A1C0640330044E737 /* DictationTest */;
+			targetProxy = C888A54B1C0640330044E737 /* PBXContainerItemProxy */;
+		};
+		C888A5561C0640330044E737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C888A5521C0640330044E737 /* DictationTest WatchKit App */;
+			targetProxy = C888A5551C0640330044E737 /* PBXContainerItemProxy */;
+		};
+		C888A5651C0640330044E737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C888A5611C0640330044E737 /* DictationTest WatchKit Extension */;
+			targetProxy = C888A5641C0640330044E737 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C888A5321C0640330044E737 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C888A5331C0640330044E737 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C888A5371C0640330044E737 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C888A5381C0640330044E737 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C888A5581C0640330044E737 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C888A5591C0640330044E737 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C888A5761C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C888A5771C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C888A5791C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "DictationTest WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		C888A57A1C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "DictationTest WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		C888A57D1C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = DictationTest_WatchKit_Extension;
+				INFOPLIST_FILE = "DictationTest WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		C888A57E1C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = DictationTest_WatchKit_Extension;
+				INFOPLIST_FILE = "DictationTest WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		C888A5811C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DictationTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C888A5821C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DictationTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C888A5841C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DictationTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DictationTest.app/DictationTest";
+			};
+			name = Debug;
+		};
+		C888A5851C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DictationTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DictationTest.app/DictationTest";
+			};
+			name = Release;
+		};
+		C888A5871C0640330044E737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DictationTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DictationTest;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		C888A5881C0640330044E737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DictationTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DictationTest;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C888A5261C0640330044E737 /* Build configuration list for PBXProject "DictationTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A5761C0640330044E737 /* Debug */,
+				C888A5771C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C888A5781C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A5791C0640330044E737 /* Debug */,
+				C888A57A1C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C888A57C1C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A57D1C0640330044E737 /* Debug */,
+				C888A57E1C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C888A5801C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A5811C0640330044E737 /* Debug */,
+				C888A5821C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C888A5831C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A5841C0640330044E737 /* Debug */,
+				C888A5851C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C888A5861C0640330044E737 /* Build configuration list for PBXNativeTarget "DictationTestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C888A5871C0640330044E737 /* Debug */,
+				C888A5881C0640330044E737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C888A5231C0640330044E737 /* Project object */;
+}
