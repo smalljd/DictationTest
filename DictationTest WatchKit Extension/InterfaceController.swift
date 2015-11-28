@@ -81,7 +81,6 @@ class InterfaceController: WKInterfaceController {
     @IBAction func inputButtonTapped() {
         presentTextInputControllerWithSuggestions([], allowedInputMode: .Plain) { input in
             if let voiceInput = input {
-                print(voiceInput)
                 if let words = voiceInput as? [String] {
                     for word in words {
                         if word.characters.count > 0 {
@@ -102,7 +101,6 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func deleteItemButtonTapped() {
         if let removeItemIndex = removeItemIndex {
-            print("Removing \(listItems[removeItemIndex].title!)")
             listItems.removeAtIndex(removeItemIndex)
             updateListItems()
         }

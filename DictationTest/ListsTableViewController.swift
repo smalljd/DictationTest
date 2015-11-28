@@ -49,7 +49,6 @@ class ListsTableViewController: UIViewController {
         // Fetch the lists
         do {
             try frc.performFetch()
-            print("List Objects: \(frc.fetchedObjects)")
             if let listObjects = frc.fetchedObjects as? [ListModel] {
                 lists = listObjects
             }
@@ -87,8 +86,6 @@ extension ListsTableViewController: UITableViewDataSource {
     
         if let cell = tableView.dequeueReusableCellWithIdentifier("listCellReuseId") as? ListTableViewCell {
             let row = indexPath.row
-            
-            print("List at row \(row): \(lists[row])")
             cell.titleLabel.text = lists[row].title
             return cell
         }

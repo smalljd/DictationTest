@@ -53,7 +53,6 @@ class ListItemsViewController: UIViewController {
         do {
             let results = try managedContext.executeFetchRequest(fetchRequest)
             if let items = results as? [ListItem] {
-                print("List Items: \(items)")
                 listItems = items
             }
         } catch let error as NSError {
