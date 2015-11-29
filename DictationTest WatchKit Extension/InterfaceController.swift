@@ -7,10 +7,11 @@
 //
 
 import WatchKit
+import WatchConnectivity
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     var listItems = [WKPickerItem]()
     @IBOutlet var inputGroup: WKInterfaceGroup!
@@ -18,6 +19,8 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var textInputSpacerGroup: WKInterfaceGroup!
     @IBOutlet var listPicker: WKInterfacePicker!
     @IBOutlet var pickerSpacerGroup: WKInterfaceGroup!
+    
+    var list: String?
     var removeItemIndex: Int?
     
     override func awakeWithContext(context: AnyObject?) {
@@ -53,13 +56,29 @@ class InterfaceController: WKInterfaceController {
             item7,
             item8,
         ]
+        // Fetch objects from Core Data
+        let session = WCSession.defaultSession()
+        session.delegate = self
+        session.activateSession()
         
         updateListItems()
         pickerItemSelected(0)
     }
     
-    override func didAppear() {
-        super.didAppear()
+    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+        if let items = applicationContext["listItems"] as? [String] {
+            listItems = []
+            for itemName in items {
+                let newItem = WKPickerItem()
+                newItem.title = itemName
+                listItems.append(newItem)
+            }
+            updateListItems()
+        }
+        
+        if let listName = applicationContext["listName"] as? String {
+            self.list = listName
+        }
     }
 
     override func willActivate() {
@@ -101,6 +120,15 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func deleteItemButtonTapped() {
         if let removeItemIndex = removeItemIndex {
+            var itemToRemove = listItems[removeItemIndex].title!
+            if let listName = list {
+                do {
+                    print("Attempting to set this item for the \(listName) item: \(itemToRemove)")
+                    try WCSession.defaultSession().updateApplicationContext(["list": listName, "listItem": itemToRemove])
+                } catch let error as NSError {
+                    print("Could not send update: \(error)\n\(error.userInfo)")
+                }
+            }
             listItems.removeAtIndex(removeItemIndex)
             updateListItems()
         }

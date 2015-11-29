@@ -8,18 +8,55 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     var window: UIWindow?
-    
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        if WCSession.isSupported() {
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
         return true
     }
     
+    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+        print("iOS App Recieved content: \(applicationContext)")
+        if let listName = applicationContext["list"] as? String, item = applicationContext["listItem"] as? String {
+            let request = NSFetchRequest(entityName: "ListModel")
+            let predicate = NSPredicate(format: "title like %@", listName)
+            request.predicate = predicate
+            
+            do {
+                let results = try managedObjectContext.executeFetchRequest(request)
+                if let items = results as? [ListModel], currentList = items.first, itemArray = currentList.listItems!.array as? [ListItem] {
+                    let newItemArray = itemArray.filter({
+                        if $0.title!.compare(item) == .OrderedSame {
+                            print("Not including \($0.title!)")
+                            return false
+                        }
+                        return true
+                    })
+                    updateList(currentList, withItems: newItemArray)
+                }
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+    func updateList(list: ListModel, withItems items: [ListItem]) {
+        list.listItems = NSOrderedSet(array: items)
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C812C5051C0A511C00723BE6 /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
 		C829B1991C07A068006D2032 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1981C07A068006D2032 /* ListsTableViewController.swift */; };
 		C829B1A31C07A1F1006D2032 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1A21C07A1F1006D2032 /* ListTableViewCell.swift */; };
 		C829B1A51C07A344006D2032 /* NoListsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */; };
+		C85B8EE21C0A48AA00A41ADC /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
+		C85B8EE31C0A48DE00A41ADC /* ListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99531C09393700B87E7B /* ListModel+CoreDataProperties.swift */; };
+		C85B8EE41C0A48E200A41ADC /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99541C09393700B87E7B /* ListModel.swift */; };
+		C85B8EE51C0A48E600A41ADC /* ListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99551C09393700B87E7B /* ListItem+CoreDataProperties.swift */; };
+		C85B8EE61C0A48EA00A41ADC /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99561C09393700B87E7B /* ListItem.swift */; };
 		C87D98FE1C08D79100B87E7B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C87D98FD1C08D79100B87E7B /* CoreData.framework */; };
 		C87D99031C08D8AA00B87E7B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
 		C87D99041C08D8E900B87E7B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
@@ -99,6 +105,7 @@
 		C829B1981C07A068006D2032 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		C829B1A21C07A1F1006D2032 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoListsTableViewCell.xib; sourceTree = "<group>"; };
+		C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemStore.swift; sourceTree = "<group>"; };
 		C87D98FD1C08D79100B87E7B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C87D99021C08D8AA00B87E7B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C87D99051C08E71A00B87E7B /* ListItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemsViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +191,6 @@
 			children = (
 				C87D99081C08EA3800B87E7B /* ViewControllers */,
 				C87D99071C08EA2D00B87E7B /* View */,
-				C829B19E1C07A0E8006D2032 /* Model */,
 			);
 			name = "List Details";
 			sourceTree = "<group>";
@@ -198,13 +204,6 @@
 			sourceTree = "<group>";
 		};
 		C829B19D1C07A0A8006D2032 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		C829B19E1C07A0E8006D2032 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -337,6 +336,7 @@
 				C888A5731C0640330044E737 /* Assets.xcassets */,
 				C888A5751C0640330044E737 /* Info.plist */,
 				C888A5671C0640330044E737 /* Supporting Files */,
+				C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */,
 			);
 			path = "DictationTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -468,7 +468,7 @@
 				TargetAttributes = {
 					C888A52A1C0640330044E737 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = FU25434T4R;
+						DevelopmentTeam = GDP24D6J8J;
 					};
 					C888A53E1C0640330044E737 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -480,11 +480,11 @@
 					};
 					C888A5521C0640330044E737 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = FU25434T4R;
+						DevelopmentTeam = GDP24D6J8J;
 					};
 					C888A5611C0640330044E737 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = FU25434T4R;
+						DevelopmentTeam = GDP24D6J8J;
 					};
 				};
 			};
@@ -564,6 +564,7 @@
 			files = (
 				C87D995A1C09393700B87E7B /* ListItem.swift in Sources */,
 				C87D99571C09393700B87E7B /* ListModel+CoreDataProperties.swift in Sources */,
+				C812C5051C0A511C00723BE6 /* ListItemStore.swift in Sources */,
 				C829B1991C07A068006D2032 /* ListsTableViewController.swift in Sources */,
 				C888A52F1C0640330044E737 /* AppDelegate.swift in Sources */,
 				C87D99591C09393700B87E7B /* ListItem+CoreDataProperties.swift in Sources */,
@@ -595,8 +596,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C85B8EE41C0A48E200A41ADC /* ListModel.swift in Sources */,
 				C888A56E1C0640330044E737 /* NotificationController.swift in Sources */,
+				C85B8EE51C0A48E600A41ADC /* ListItem+CoreDataProperties.swift in Sources */,
+				C85B8EE31C0A48DE00A41ADC /* ListModel+CoreDataProperties.swift in Sources */,
+				C85B8EE61C0A48EA00A41ADC /* ListItem.swift in Sources */,
 				C888A56C1C0640330044E737 /* ExtensionDelegate.swift in Sources */,
+				C85B8EE21C0A48AA00A41ADC /* ListItemStore.swift in Sources */,
 				C888A5721C0640330044E737 /* ComplicationController.swift in Sources */,
 				C888A56A1C0640330044E737 /* InterfaceController.swift in Sources */,
 				C888A5701C0640330044E737 /* GlanceController.swift in Sources */,
@@ -784,6 +790,7 @@
 				INFOPLIST_FILE = "DictationTest WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -801,6 +808,7 @@
 				INFOPLIST_FILE = "DictationTest WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -818,7 +826,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5de1b99-279e-4ea3-abdb-49ca1a9a918e";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -832,7 +840,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeff.small.DictationTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5de1b99-279e-4ea3-abdb-49ca1a9a918e";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

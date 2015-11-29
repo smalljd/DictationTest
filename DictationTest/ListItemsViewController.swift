@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
 class ListItemsViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ListItemsViewController: UIViewController {
     var listItems = [ListItem]()
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var frc: NSFetchedResultsController?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addItemView: UIView!
@@ -27,36 +29,71 @@ class ListItemsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        frc = fetchedResultsController()
+        frc!.delegate = self
+        fetchListItems()
+        
         newItemTextField.delegate = self
         
         addItemView.layer.borderColor = UIColor.lightGrayColor().CGColor
         addItemView.layer.borderWidth = 1.0
         addItemView.layer.cornerRadius = 5.0
     }
+
+    override func viewWillAppear(animated: Bool) {
+        if let _ = list {
+            sendListItemsToWatch(listItems)
+        }
+    }
     
     func configureWithList(list: ListModel) {
         self.list = list
         title = list.title
-        fetchListItems()
     }
     
-    private func fetchListItems() {
+    func fetchedResultsController() -> NSFetchedResultsController {
         guard let list = list else {
-            return
+            return NSFetchedResultsController()
         }
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "ListItem")
         let predicate = NSPredicate(format: "list.title like %@", argumentArray: [list.title!])
         fetchRequest.predicate = predicate
+        let sortDescriptors = NSSortDescriptor(key: "creationDate", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptors]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+            managedObjectContext: managedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        return controller
+    }
+    
+    private func fetchListItems() {
+        guard let frc = frc else {
+            return
+        }
         
         do {
-            let results = try managedContext.executeFetchRequest(fetchRequest)
-            if let items = results as? [ListItem] {
+            try frc.performFetch()
+            if let items = frc.fetchedObjects as? [ListItem] {
                 listItems = items
+                //sendListItemsToWatch(items)
             }
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+    
+    func sendListItemsToWatch(items: [ListItem]) {
+        do {
+            if WCSession.isSupported() {
+                try WCSession.defaultSession().updateApplicationContext(["listName": list?.title! ?? "", "listItems": items.map({"\($0.title!)"})])
+            }
+        } catch let error as NSError {
+            print("Unable to send data to the watch: \(error)\n\(error.userInfo)")
         }
     }
 
@@ -90,7 +127,8 @@ class ListItemsViewController: UIViewController {
         let newItem = ListItem(entity: listItemsEntity!, insertIntoManagedObjectContext: context) as ListItem
         newItem.title = name
         listItems.append(newItem)
-        list!.setValue(NSOrderedSet(array: listItems), forKey: "listItems")
+        list!.listItems = NSOrderedSet(array: listItems)
+        newItem.creationDate = NSDate()
         
         do {
             try context.save()
@@ -164,7 +202,7 @@ extension ListItemsViewController: UITableViewDelegate {
         if listItems.count == 0 {
             return 175.0
         }
-        return 50.0
+        return 25.0
     }
 }
 
@@ -177,5 +215,13 @@ extension ListItemsViewController: UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension ListItemsViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        fetchListItems()
+        sendListItemsToWatch(listItems)
+        tableView.reloadData()
     }
 }
