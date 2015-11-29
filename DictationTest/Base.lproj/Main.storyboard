@@ -47,7 +47,7 @@
                                 </prototypes>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fx1-si-0es" userLabel="New List View">
-                                <rect key="frame" x="175" y="240" width="250" height="120"/>
+                                <rect key="frame" x="175" y="180" width="250" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iwv-P4-tUq">
                                         <rect key="frame" x="95" y="8" width="60" height="18"/>
@@ -110,7 +110,7 @@
                             <constraint firstItem="DFM-ax-NVD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Op-9M-TV6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DFM-ax-NVD" secondAttribute="bottom" id="6Vv-if-Eey"/>
                             <constraint firstItem="Fx1-si-0es" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aee-bA-3Nt"/>
-                            <constraint firstItem="Fx1-si-0es" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cyG-iN-JHV"/>
+                            <constraint firstItem="Fx1-si-0es" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-60" id="cyG-iN-JHV"/>
                             <constraint firstAttribute="trailing" secondItem="DFM-ax-NVD" secondAttribute="trailing" id="qtE-sH-6Pt"/>
                             <constraint firstItem="DFM-ax-NVD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sBq-tN-L78"/>
                         </constraints>
@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXk-5L-NdG" userLabel="New List View">
-                                <rect key="frame" x="175" y="240" width="250" height="120"/>
+                                <rect key="frame" x="175" y="180" width="250" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add an Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbJ-1t-JxR">
                                         <rect key="frame" x="84" y="8" width="82" height="18"/>
@@ -154,10 +154,10 @@
                                         <color key="textColor" red="0.050980392159999999" green="0.4039215686" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-f7-azU">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-f7-azU">
                                         <rect key="frame" x="8" y="32" width="234" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYD-qo-ngi">
                                         <rect key="frame" x="5" y="80" width="120" height="30"/>
@@ -274,7 +274,7 @@ When you want to remove an item, just swipe left on that item and tap "Delete"!<
                             <constraint firstItem="Ujf-Lm-Osz" firstAttribute="top" secondItem="8BB-8h-j1m" secondAttribute="bottom" constant="15" id="UGj-xf-cGA"/>
                             <constraint firstItem="Ujf-Lm-Osz" firstAttribute="leading" secondItem="tSL-LC-euh" secondAttribute="leading" id="gAi-st-bt3"/>
                             <constraint firstItem="QXk-5L-NdG" firstAttribute="centerX" secondItem="tSL-LC-euh" secondAttribute="centerX" id="gfH-EH-dME"/>
-                            <constraint firstItem="QXk-5L-NdG" firstAttribute="centerY" secondItem="tSL-LC-euh" secondAttribute="centerY" id="pTX-gm-Hcz"/>
+                            <constraint firstItem="QXk-5L-NdG" firstAttribute="centerY" secondItem="tSL-LC-euh" secondAttribute="centerY" constant="-60" id="pTX-gm-Hcz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List Title" id="c8y-Oh-qVJ">

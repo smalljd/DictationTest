@@ -120,7 +120,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func deleteItemButtonTapped() {
         if let removeItemIndex = removeItemIndex {
-            var itemToRemove = listItems[removeItemIndex].title!
+            let itemToRemove = listItems[removeItemIndex].title!
             if let listName = list {
                 do {
                     print("Attempting to set this item for the \(listName) item: \(itemToRemove)")

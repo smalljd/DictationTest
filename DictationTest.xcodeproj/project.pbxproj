@@ -11,6 +11,8 @@
 		C829B1991C07A068006D2032 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1981C07A068006D2032 /* ListsTableViewController.swift */; };
 		C829B1A31C07A1F1006D2032 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1A21C07A1F1006D2032 /* ListTableViewCell.swift */; };
 		C829B1A51C07A344006D2032 /* NoListsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */; };
+		C840793E1C0A7D62007616E8 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
+		C840793F1C0A8B32007616E8 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
 		C85B8EE21C0A48AA00A41ADC /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
 		C85B8EE31C0A48DE00A41ADC /* ListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99531C09393700B87E7B /* ListModel+CoreDataProperties.swift */; };
 		C85B8EE41C0A48E200A41ADC /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99541C09393700B87E7B /* ListModel.swift */; };
@@ -515,6 +517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C840793E1C0A7D62007616E8 /* Model.xcdatamodeld in Resources */,
 				C829B1A51C07A344006D2032 /* NoListsTableViewCell.xib in Resources */,
 				C888A5391C0640330044E737 /* LaunchScreen.storyboard in Resources */,
 				C888A5361C0640330044E737 /* Assets.xcassets in Resources */,
@@ -550,6 +553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C840793F1C0A8B32007616E8 /* Model.xcdatamodeld in Resources */,
 				C888A5741C0640330044E737 /* Assets.xcassets in Resources */,
 				C8CA83B41C06686900735B23 /* ui-icons.ttf in Resources */,
 			);
