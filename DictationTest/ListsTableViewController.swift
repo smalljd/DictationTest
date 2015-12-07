@@ -27,10 +27,11 @@ class ListsTableViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        frc = fetchedResultsController()
-        fetchListsFromCoreData()
         
         newListTextField.delegate = self
+        
+        ListStore.defaultStore.addListObserver(self)
+        ListStore.defaultStore.fetchLists()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,42 +42,11 @@ class ListsTableViewController: UIViewController {
         newListView.layer.cornerRadius = 5.0
         newListView.layer.borderWidth = 1.0
     }
-    
-    func fetchListsFromCoreData() {
-        guard let frc = frc else {
-            return
-        }
-        // Fetch the lists
-        do {
-            try frc.performFetch()
-            if let listObjects = frc.fetchedObjects as? [ListModel] {
-                lists = listObjects
-            }
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
-    
-    func fetchedResultsController() -> NSFetchedResultsController {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "ListModel")
-        let sortDescriptors = NSSortDescriptor(key: "title", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptors]
-        
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        return controller
-    }
-
 }
 
 // MARK: Table View Data Source
 extension ListsTableViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print(lists?.count)
         guard let lists = lists where lists.count > 0 else {
             if let noListsCell = tableView.dequeueReusableCellWithIdentifier("noListsCellReuseId") {
                 return noListsCell
@@ -175,25 +145,12 @@ extension ListsTableViewController {
     }
     
     func saveNewList(name: String) {
-        if lists == nil {
-            lists = [ListModel]()
-        }
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let listEntity = NSEntityDescription.entityForName("ListModel", inManagedObjectContext: managedContext)
-        let newList = ListModel(entity: listEntity!, insertIntoManagedObjectContext: managedContext) as ListModel
-        newList.title = name
-        
-        do {
-            try managedContext.save()
-            lists!.append(newList)
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
-        }
-        
-        tableView.reloadData()
+        ListStore.defaultStore.insertNewList(name)
         dismissNewListView()
+    }
+    
+    func deleteList(title: String) {
+        ListStore.defaultStore.removeList(title)
     }
 }
 
@@ -204,5 +161,12 @@ extension ListsTableViewController: UITextFieldDelegate {
         }
         dismissNewListView()
         return true
+    }
+}
+
+extension ListsTableViewController: ListChangeDelegate {
+    func listsDidChange(lists: [ListModel]) {
+        self.lists = lists
+        tableView.reloadData()
     }
 }

@@ -16,7 +16,6 @@ class ListItemsViewController: UIViewController {
     var listItems = [ListItem]()
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var frc: NSFetchedResultsController?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addItemView: UIView!
@@ -29,10 +28,8 @@ class ListItemsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        frc = fetchedResultsController()
-        frc!.delegate = self
-        fetchListItems()
-        
+        ListStore.defaultStore.addListItemChangeObserver(self)
+        ListStore.defaultStore.fetchListItems(list!)
         newItemTextField.delegate = self
         
         addItemView.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -51,42 +48,6 @@ class ListItemsViewController: UIViewController {
         title = list.title
     }
     
-    func fetchedResultsController() -> NSFetchedResultsController {
-        guard let list = list else {
-            return NSFetchedResultsController()
-        }
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "ListItem")
-        let predicate = NSPredicate(format: "list.title like %@", argumentArray: [list.title!])
-        fetchRequest.predicate = predicate
-        let sortDescriptors = NSSortDescriptor(key: "creationDate", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptors]
-        
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        return controller
-    }
-    
-    private func fetchListItems() {
-        guard let frc = frc else {
-            return
-        }
-        
-        do {
-            try frc.performFetch()
-            if let items = frc.fetchedObjects as? [ListItem] {
-                listItems = items
-                //sendListItemsToWatch(items)
-            }
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
-    
     func sendListItemsToWatch(items: [ListItem]) {
         do {
             if WCSession.isSupported() {
@@ -101,6 +62,7 @@ class ListItemsViewController: UIViewController {
         if let itemName = newItemTextField.text where itemName.characters.count > 0 {
             addItemWithName(itemName)
             newItemTextField.becomeFirstResponder()
+            newItemTextField.text = ""
         }
         return
     }
@@ -122,22 +84,10 @@ class ListItemsViewController: UIViewController {
     }
     
     private func addItemWithName(name: String) {
-        let context = appDelegate.managedObjectContext
-        let listItemsEntity = NSEntityDescription.entityForName("ListItem", inManagedObjectContext: context)
-        let newItem = ListItem(entity: listItemsEntity!, insertIntoManagedObjectContext: context) as ListItem
-        newItem.title = name
-        listItems.append(newItem)
-        list!.listItems = NSOrderedSet(array: listItems)
-        newItem.creationDate = NSDate()
-        
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
+        guard let list = list else {
+            return
         }
-        
-        fetchListItems()
-        tableView.reloadData()
+        ListStore.defaultStore.addListItem(name, list: list)
     }
     
     private func presentAddItemView() {
@@ -218,10 +168,18 @@ extension ListItemsViewController: UITextFieldDelegate {
     }
 }
 
-extension ListItemsViewController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        fetchListItems()
-        sendListItemsToWatch(listItems)
-        tableView.reloadData()
+extension ListItemsViewController: ListItemChangeDelegate {
+    func listItemsDidChange(list: ListModel, items: [ListItem]) {
+        guard let currentList = self.list else {
+            return
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            if list.title! == currentList.title! {
+                self.listItems = items
+                self.sendListItemsToWatch(items)
+                self.tableView.reloadData()
+            }  
+        })
     }
 }

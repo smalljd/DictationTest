@@ -7,12 +7,14 @@
 //
 
 import WatchKit
+import WatchConnectivity
+import CoreData
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-
+    let session = WCSession.defaultSession()
+    
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
-        
     }
 
     func applicationDidBecomeActive() {

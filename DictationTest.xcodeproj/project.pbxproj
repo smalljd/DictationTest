@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C812C5051C0A511C00723BE6 /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
 		C829B1991C07A068006D2032 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1981C07A068006D2032 /* ListsTableViewController.swift */; };
 		C829B1A31C07A1F1006D2032 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C829B1A21C07A1F1006D2032 /* ListTableViewCell.swift */; };
 		C829B1A51C07A344006D2032 /* NoListsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */; };
 		C840793E1C0A7D62007616E8 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
 		C840793F1C0A8B32007616E8 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = C87D99011C08D8AA00B87E7B /* Model.xcdatamodeld */; };
-		C85B8EE21C0A48AA00A41ADC /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
+		C857996E1C0D0BF400EE5235 /* ListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857996D1C0D0BF400EE5235 /* ListStore.swift */; };
+		C85799721C0D0FDF00EE5235 /* ListChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85799711C0D0FDF00EE5235 /* ListChangeDelegate.swift */; };
+		C85799741C0D109D00EE5235 /* ListItemChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85799731C0D109D00EE5235 /* ListItemChangeDelegate.swift */; };
+		C85799771C0D130100EE5235 /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85799761C0D130100EE5235 /* WatchConnectionManager.swift */; };
 		C85B8EE31C0A48DE00A41ADC /* ListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99531C09393700B87E7B /* ListModel+CoreDataProperties.swift */; };
 		C85B8EE41C0A48E200A41ADC /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99541C09393700B87E7B /* ListModel.swift */; };
 		C85B8EE51C0A48E600A41ADC /* ListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87D99551C09393700B87E7B /* ListItem+CoreDataProperties.swift */; };
@@ -45,6 +47,8 @@
 		C888A5741C0640330044E737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C888A5731C0640330044E737 /* Assets.xcassets */; };
 		C8CA83B11C06681500735B23 /* ui-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8CA83B01C06681500735B23 /* ui-icons.ttf */; };
 		C8CA83B41C06686900735B23 /* ui-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8CA83B31C06686900735B23 /* ui-icons.ttf */; };
+		C8E128661C13D3FD009D660E /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
+		C8F95F361C151992009CCDA5 /* ListItemsChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F95F351C151992009CCDA5 /* ListItemsChangedDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,10 @@
 		C829B1981C07A068006D2032 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		C829B1A21C07A1F1006D2032 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoListsTableViewCell.xib; sourceTree = "<group>"; };
+		C857996D1C0D0BF400EE5235 /* ListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStore.swift; sourceTree = "<group>"; };
+		C85799711C0D0FDF00EE5235 /* ListChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListChangeDelegate.swift; sourceTree = "<group>"; };
+		C85799731C0D109D00EE5235 /* ListItemChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemChangeDelegate.swift; sourceTree = "<group>"; };
+		C85799761C0D130100EE5235 /* WatchConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchConnectionManager.swift; sourceTree = "<group>"; };
 		C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemStore.swift; sourceTree = "<group>"; };
 		C87D98FD1C08D79100B87E7B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C87D99021C08D8AA00B87E7B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 		C888A5751C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8CA83B01C06681500735B23 /* ui-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ui-icons.ttf"; sourceTree = "<group>"; };
 		C8CA83B31C06686900735B23 /* ui-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ui-icons.ttf"; sourceTree = "<group>"; };
+		C8F95F351C151992009CCDA5 /* ListItemsChangedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemsChangedDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				C829B1A11C07A1D4006D2032 /* View */,
-				C829B19D1C07A0A8006D2032 /* Model */,
 				C829B19A1C07A076006D2032 /* View Controllers */,
 			);
 			name = Lists;
@@ -205,13 +213,6 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		C829B19D1C07A0A8006D2032 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		C829B1A11C07A1D4006D2032 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +220,24 @@
 				C829B1A41C07A344006D2032 /* NoListsTableViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C85799701C0D0FC000EE5235 /* Data Stores */ = {
+			isa = PBXGroup;
+			children = (
+				C857996D1C0D0BF400EE5235 /* ListStore.swift */,
+				C85799711C0D0FDF00EE5235 /* ListChangeDelegate.swift */,
+				C85799731C0D109D00EE5235 /* ListItemChangeDelegate.swift */,
+			);
+			name = "Data Stores";
+			sourceTree = "<group>";
+		};
+		C85799751C0D12E200EE5235 /* Watch Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				C85799761C0D130100EE5235 /* WatchConnectionManager.swift */,
+			);
+			name = "Watch Connectivity";
 			sourceTree = "<group>";
 		};
 		C87D98FF1C08D88100B87E7B /* Resources */ = {
@@ -285,12 +304,14 @@
 		C888A52D1C0640330044E737 /* DictationTest */ = {
 			isa = PBXGroup;
 			children = (
+				C85799751C0D12E200EE5235 /* Watch Connectivity */,
+				C85799701C0D0FC000EE5235 /* Data Stores */,
+				C888A5351C0640330044E737 /* Assets.xcassets */,
 				C87D98FF1C08D88100B87E7B /* Resources */,
 				C829B1971C07A038006D2032 /* List Details */,
 				C829B1961C07A02A006D2032 /* Lists */,
 				C888A52E1C0640330044E737 /* AppDelegate.swift */,
 				C888A5321C0640330044E737 /* Main.storyboard */,
-				C888A5351C0640330044E737 /* Assets.xcassets */,
 				C888A5371C0640330044E737 /* LaunchScreen.storyboard */,
 				C888A53A1C0640330044E737 /* Info.plist */,
 			);
@@ -339,6 +360,7 @@
 				C888A5751C0640330044E737 /* Info.plist */,
 				C888A5671C0640330044E737 /* Supporting Files */,
 				C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */,
+				C8F95F351C151992009CCDA5 /* ListItemsChangedDelegate.swift */,
 			);
 			path = "DictationTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -568,15 +590,18 @@
 			files = (
 				C87D995A1C09393700B87E7B /* ListItem.swift in Sources */,
 				C87D99571C09393700B87E7B /* ListModel+CoreDataProperties.swift in Sources */,
-				C812C5051C0A511C00723BE6 /* ListItemStore.swift in Sources */,
 				C829B1991C07A068006D2032 /* ListsTableViewController.swift in Sources */,
 				C888A52F1C0640330044E737 /* AppDelegate.swift in Sources */,
 				C87D99591C09393700B87E7B /* ListItem+CoreDataProperties.swift in Sources */,
 				C87D990A1C08EA5E00B87E7B /* ListItemTableViewCell.swift in Sources */,
+				C85799771C0D130100EE5235 /* WatchConnectionManager.swift in Sources */,
 				C87D99061C08E71A00B87E7B /* ListItemsViewController.swift in Sources */,
 				C829B1A31C07A1F1006D2032 /* ListTableViewCell.swift in Sources */,
+				C85799741C0D109D00EE5235 /* ListItemChangeDelegate.swift in Sources */,
 				C87D99031C08D8AA00B87E7B /* Model.xcdatamodeld in Sources */,
+				C85799721C0D0FDF00EE5235 /* ListChangeDelegate.swift in Sources */,
 				C87D99581C09393700B87E7B /* ListModel.swift in Sources */,
+				C857996E1C0D0BF400EE5235 /* ListStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,13 +625,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8F95F361C151992009CCDA5 /* ListItemsChangedDelegate.swift in Sources */,
 				C85B8EE41C0A48E200A41ADC /* ListModel.swift in Sources */,
 				C888A56E1C0640330044E737 /* NotificationController.swift in Sources */,
 				C85B8EE51C0A48E600A41ADC /* ListItem+CoreDataProperties.swift in Sources */,
 				C85B8EE31C0A48DE00A41ADC /* ListModel+CoreDataProperties.swift in Sources */,
 				C85B8EE61C0A48EA00A41ADC /* ListItem.swift in Sources */,
 				C888A56C1C0640330044E737 /* ExtensionDelegate.swift in Sources */,
-				C85B8EE21C0A48AA00A41ADC /* ListItemStore.swift in Sources */,
+				C8E128661C13D3FD009D660E /* ListItemStore.swift in Sources */,
 				C888A5721C0640330044E737 /* ComplicationController.swift in Sources */,
 				C888A56A1C0640330044E737 /* InterfaceController.swift in Sources */,
 				C888A5701C0640330044E737 /* GlanceController.swift in Sources */,

@@ -12,15 +12,19 @@ import Foundation
 
 class GlanceController: WKInterfaceController {
 
+    @IBOutlet var listTitleLabel: WKInterfaceLabel!
+    @IBOutlet var numberOfListItemsLabel: WKInterfaceLabel!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        ListItemStore.addListItemObserver(self)
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        numberOfListItemsLabel.setText("\(ListItemStore.listItems.count)")
     }
 
     override func didDeactivate() {
@@ -28,4 +32,11 @@ class GlanceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+}
+
+extension GlanceController: ListItemsChangedDelegate {
+    func listItemsDidChange(items: [String], list: String) {
+        numberOfListItemsLabel.setText("\(items.count)")
+        listTitleLabel.setText(list)
+    }
 }

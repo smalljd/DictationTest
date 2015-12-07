@@ -25,43 +25,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
-        // Configure interface objects here.
-        // Set picker items
-        let item1 = WKPickerItem()
-        let item2 = WKPickerItem()
-        let item3 = WKPickerItem()
-        let item4 = WKPickerItem()
-        let item5 = WKPickerItem()
-        let item6 = WKPickerItem()
-        let item7 = WKPickerItem()
-        let item8 = WKPickerItem()
-        
-        item1.title = "Milk"
-        item2.title = "Dog food"
-        item3.title = "Toothpaste"
-        item4.title = "Ice cream"
-        item5.title = "Bread"
-        item6.title = "Tomatoes"
-        item7.title = "Avocados"
-        item8.title = "Hot sauce"
-        
-        listItems = [
-            item1,
-            item2,
-            item3,
-            item4,
-            item5,
-            item6,
-            item7,
-            item8,
-        ]
+
         // Fetch objects from Core Data
         let session = WCSession.defaultSession()
         session.delegate = self
         session.activateSession()
         
+        hideDisplays()
         updateListItems()
+        ListItemStore.addListItemObserver(self)
         pickerItemSelected(0)
     }
     
@@ -73,6 +45,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 newItem.title = itemName
                 listItems.append(newItem)
             }
+            ListItemStore.setListItems(items, list: applicationContext["listName"] as! String)
             updateListItems()
         }
         
@@ -84,21 +57,35 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        textInputSpacerGroup.setWidth(150)
-        pickerSpacerGroup.setHeight(200)
+        hideDisplays()
         animateWithDuration(1.0, animations: {
-            self.textInputSpacerGroup.setWidth(0)
-            self.pickerSpacerGroup.setHeight(0)
+            self.showDisplays()
         })
+    }
+    
+    override func willDisappear() {
+        hideDisplays()
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        hideDisplays()
+    }
+    
+    func showDisplays() {
+        self.textInputSpacerGroup.setWidth(0)
+        self.pickerSpacerGroup.setHeight(0)
+    }
+    
+    func hideDisplays() {
+        textInputSpacerGroup.setWidth(150)
+        pickerSpacerGroup.setHeight(200)
     }
 
     @IBAction func inputButtonTapped() {
-        presentTextInputControllerWithSuggestions([], allowedInputMode: .Plain) { input in
+        let suggestions = ["Milk", "Eggs", "Bread", "Cereal", "Peanut Butter",]
+        presentTextInputControllerWithSuggestions(suggestions   , allowedInputMode: .AllowEmoji) { input in
             if let voiceInput = input {
                 if let words = voiceInput as? [String] {
                     for word in words {
@@ -106,6 +93,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                             let newPickerItem = WKPickerItem()
                             newPickerItem.title = word
                             self.listItems.append(newPickerItem)
+                            if let list = self.list {
+                                self.addItemToList(word, listName: list)
+                            }
                         }
                     }
                     self.updateListItems()
@@ -114,6 +104,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    func addItemToList(itemName: String, listName: String) {
+        let userInfo = ["action": "insert",
+            "listItem": itemName,
+            "list": listName,
+        ]
+        WCSession.defaultSession().transferUserInfo(userInfo)
+    }
     @IBAction func pickerItemSelected(value: Int) {
         removeItemIndex = value
     }
@@ -122,12 +119,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if let removeItemIndex = removeItemIndex {
             let itemToRemove = listItems[removeItemIndex].title!
             if let listName = list {
-                do {
-                    print("Attempting to set this item for the \(listName) item: \(itemToRemove)")
-                    try WCSession.defaultSession().updateApplicationContext(["list": listName, "listItem": itemToRemove])
-                } catch let error as NSError {
-                    print("Could not send update: \(error)\n\(error.userInfo)")
-                }
+                print("Attempting to remove \(itemToRemove) from the \(listName) list")
+                let userInfo = ["action": "delete",
+                    "listItem": itemToRemove,
+                    "list": listName,
+                ]
+                WCSession.defaultSession().transferUserInfo(userInfo)
             }
             listItems.removeAtIndex(removeItemIndex)
             updateListItems()
@@ -142,5 +139,20 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             return false
         }
         listPicker.setItems(listItems)
+    }
+}
+
+extension InterfaceController: ListItemsChangedDelegate {
+    func listItemsDidChange(items: [String], list: String) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.listItems = []
+            for item in items {
+                let pickerItem = WKPickerItem()
+                pickerItem.title = item
+                self.listItems.append(pickerItem)
+            }
+            self.list = list
+            self.updateListItems()
+        })
     }
 }

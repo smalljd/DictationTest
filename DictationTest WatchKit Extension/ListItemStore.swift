@@ -9,10 +9,20 @@
 import Foundation
 
 public class ListItemStore {
-    static var listItems = [ListItem]()
+    static var listItems = [String]()
+    static var list = ""
     
-    class func setListItems(items: [ListItem]) {
+    static private var listItemObservers = [ListItemsChangedDelegate]()
+    
+    class func setListItems(items: [String], list: String) {
         listItems = items
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ListItemsUpdated", object: nil))
+        self.list = list
+        for observer in listItemObservers {
+            observer.listItemsDidChange(items, list:  list)
+        }
+    }
+    
+    class func addListItemObserver(observer: ListItemsChangedDelegate) {
+        listItemObservers.append(observer)
     }
 }

@@ -21,42 +21,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             session.delegate = self
             session.activateSession()
         }
+        
+        ListStore.defaultStore.fetchLists()
         return true
     }
     
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-        print("iOS App Recieved content: \(applicationContext)")
-        if let listName = applicationContext["list"] as? String, item = applicationContext["listItem"] as? String {
-            let request = NSFetchRequest(entityName: "ListModel")
-            let predicate = NSPredicate(format: "title like %@", listName)
-            request.predicate = predicate
-            
-            do {
-                let results = try managedObjectContext.executeFetchRequest(request)
-                if let items = results as? [ListModel], currentList = items.first, itemArray = currentList.listItems!.array as? [ListItem] {
-                    let newItemArray = itemArray.filter({
-                        if $0.title!.compare(item) == .OrderedSame {
-                            print("Not including \($0.title!)")
-                            return false
-                        }
-                        return true
-                    })
-                    updateList(currentList, withItems: newItemArray)
+    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+        if let action = userInfo["action"] as? String {
+            // Remove Item From List
+            if action.caseInsensitiveCompare("delete") == .OrderedSame {
+                let listItem = userInfo["listItem"] as! String
+                let listName = userInfo["list"] as! String
+                if let list = ListStore.defaultStore.listWithName(listName) {
+                    ListStore.defaultStore.removeListItem(listItem, list: list)
                 }
-            } catch let error as NSError {
-                print("Could not fetch \(error), \(error.userInfo)")
+                // Add an item to the list
+            } else if action.caseInsensitiveCompare("insert") == .OrderedSame {
+                let listItem = userInfo["listItem"] as! String
+                let listName = userInfo["list"] as! String
+                if let list = ListStore.defaultStore.listWithName(listName) {
+                    ListStore.defaultStore.addListItem(listItem, list: list)
+                }
             }
         }
     }
     
-    func updateList(list: ListModel, withItems items: [ListItem]) {
-        list.listItems = NSOrderedSet(array: items)
-        do {
-            try managedObjectContext.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
-        }
-    }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
