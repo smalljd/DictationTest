@@ -105,15 +105,7 @@ extension ListsTableViewController {
         if !newListView.hidden {
             return
         }
-        tableView.userInteractionEnabled = false
-        newListView.alpha = 0.0
-        newListView.hidden = false
-        UIView.animateWithDuration(0.6, animations: {
-            self.newListView.alpha = 1.0
-            self.tableView.alpha = 0.2
-            }, completion: { finished in
-                self.newListTextField.becomeFirstResponder()
-        })
+        presentNewListView()
     }
     
     @IBAction func createNewListButtonTapped(sender: AnyObject) {
@@ -130,6 +122,18 @@ extension ListsTableViewController {
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         dismissNewListView()
+    }
+    
+    func presentNewListView() {
+        tableView.userInteractionEnabled = false
+        newListView.alpha = 0.0
+        newListView.hidden = false
+        UIView.animateWithDuration(0.6, animations: {
+            self.newListView.alpha = 1.0
+            self.tableView.alpha = 0.2
+            }, completion: { finished in
+                self.newListTextField.becomeFirstResponder()
+        })
     }
     
     private func dismissNewListView() {

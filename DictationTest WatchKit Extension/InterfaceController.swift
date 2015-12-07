@@ -31,6 +31,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         session.delegate = self
         session.activateSession()
         
+        listItems = []
+        for listItem in ListItemStore.listItems {
+            let newItem = WKPickerItem()
+            newItem.title = listItem
+            listItems.append(newItem)
+        }
+        
         hideDisplays()
         updateListItems()
         ListItemStore.addListItemObserver(self)
@@ -85,22 +92,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     @IBAction func inputButtonTapped() {
         let suggestions = ["Milk", "Eggs", "Bread", "Cereal", "Peanut Butter",]
-        presentTextInputControllerWithSuggestions(suggestions   , allowedInputMode: .AllowEmoji) { input in
-            if let voiceInput = input {
-                if let words = voiceInput as? [String] {
-                    for word in words {
-                        if word.characters.count > 0 {
-                            let newPickerItem = WKPickerItem()
-                            newPickerItem.title = word
-                            self.listItems.append(newPickerItem)
-                            if let list = self.list {
-                                self.addItemToList(word, listName: list)
-                            }
+        presentTextInputControllerWithSuggestions(suggestions, allowedInputMode: .AllowAnimatedEmoji) { input in
+            if let words = input as? [String] {
+                for word in words {
+                    if word.characters.count > 0 {
+                        let newPickerItem = WKPickerItem()
+                        newPickerItem.title = word
+                        self.listItems.append(newPickerItem)
+                        if let list = self.list {
+                            self.addItemToList(word, listName: list)
                         }
                     }
-                    self.updateListItems()
                 }
-            }
+                self.updateListItems()
+            } //else if let animatedEmoji = input as? [NSData] {
+//                let image = UIImage(data: animatedEmoji.first ?? NSData())
+            //}
         }
     }
     

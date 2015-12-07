@@ -54,7 +54,7 @@ class ListItemsViewController: UIViewController {
                 try WCSession.defaultSession().updateApplicationContext(["listName": list?.title! ?? "", "listItems": items.map({"\($0.title!)"})])
             }
         } catch let error as NSError {
-            print("Unable to send data to the watch: \(error)\n\(error.userInfo)")
+            print("Unable to update context: \(error.userInfo)")
         }
     }
 
@@ -90,7 +90,7 @@ class ListItemsViewController: UIViewController {
         ListStore.defaultStore.addListItem(name, list: list)
     }
     
-    private func presentAddItemView() {
+    func presentAddItemView() {
         if !addItemView.hidden {
             return
         }

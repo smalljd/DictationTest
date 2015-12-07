@@ -14,7 +14,25 @@ import WatchConnectivity
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     var window: UIWindow?
+    
+    enum ShortcutItem: String {
+        case NewList
+        
+        init?(identifier: String) {
+            guard let validIdentifer = identifier.componentsSeparatedByString(".").last else {
+                return nil
+            }
+            self.init(rawValue: validIdentifer)
+        }
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            handleShortcutItem(shortcutItem)
+            return false
+        }
+        
         // Override point for customization after application launch.
         if WCSession.isSupported() {
             let session = WCSession.defaultSession()
@@ -23,7 +41,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         }
         
         ListStore.defaultStore.fetchLists()
+        
         return true
+    }
+    
+    func handleShortcutItem(shortcut: UIApplicationShortcutItem) -> Bool {
+        let shortcutType = shortcut.type
+        
+        guard let validShortcut = ShortcutItem(identifier: shortcutType) else {
+            print("Invalid shortcut")
+            return false
+        }
+        
+        if validShortcut == .NewList {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let navController = storyboard.instantiateInitialViewController() as? UINavigationController {
+                window?.rootViewController = navController
+                window?.makeKeyAndVisible()
+                if let listVC = navController.viewControllers.first as? ListsTableViewController {
+                    let _ = listVC.view
+                    listVC.presentNewListView()
+                }
+            }
+        }
+        return true
+    }
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        completionHandler(handleShortcutItem(shortcutItem))
     }
     
     func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
