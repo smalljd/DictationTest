@@ -25,6 +25,7 @@ class GlanceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         numberOfListItemsLabel.setText("\(ListItemStore.listItems.count)")
+        listTitleLabel.setText(ListItemStore.list)
     }
 
     override func didDeactivate() {

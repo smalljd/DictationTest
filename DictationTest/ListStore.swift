@@ -166,6 +166,7 @@ extension ListStore {
     
     func removeListItem(itemName: String, list: ListModel) {
         if let itemSet = list.listItems, var listItems = Array(itemSet) as? [ListItem] {
+            print("List Items: \(listItems)")
             for (index, element) in listItems.enumerate() {
                 if element.title!.compare(itemName) == .OrderedSame {
                     listItems.removeAtIndex(index)
@@ -185,6 +186,16 @@ extension ListStore {
     
     func addListItemChangeObserver(observer: ListItemChangeDelegate) {
         listItemChangeObservers.append(observer)
+    }
+    
+    func removeListItemObserver(observer: ListItemChangeDelegate) {
+        if let object = observer as? NSObject {
+            for (index, item) in listItemChangeObservers.enumerate() {
+                if let observerImplementation = item as? AnyObject where object.isEqual(observerImplementation) {
+                    listItemChangeObservers.removeAtIndex(index)
+                }
+            }
+        }
     }
     
     func removeAllListItemObservers() {

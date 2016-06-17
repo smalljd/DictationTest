@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
@@ -15,7 +15,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="DictationTest_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" id="Zky-o2-Qiv" userLabel="Picker Spacer Group"/>
+                        <group width="1" height="100" alignment="left" id="Zky-o2-Qiv" userLabel="Picker Spacer Group"/>
                         <group width="1" alignment="left" id="kOi-LJ-Bzq" userLabel="Picker Group">
                             <items>
                                 <picker width="1" height="100" alignment="center" focusStyle="stack" indicatorMode="shownWhileFocused" id="3cA-KV-Etz">

@@ -45,6 +45,7 @@
 		C888A5701C0640330044E737 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A56F1C0640330044E737 /* GlanceController.swift */; };
 		C888A5721C0640330044E737 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888A5711C0640330044E737 /* ComplicationController.swift */; };
 		C888A5741C0640330044E737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C888A5731C0640330044E737 /* Assets.xcassets */; };
+		C8A820531C1B92B200BEC46C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A820521C1B92B200BEC46C /* iAd.framework */; };
 		C8CA83B11C06681500735B23 /* ui-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8CA83B01C06681500735B23 /* ui-icons.ttf */; };
 		C8CA83B41C06686900735B23 /* ui-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8CA83B31C06686900735B23 /* ui-icons.ttf */; };
 		C8E128661C13D3FD009D660E /* ListItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B8EE11C0A48AA00A41ADC /* ListItemStore.swift */; };
@@ -149,6 +150,7 @@
 		C888A5711C0640330044E737 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		C888A5731C0640330044E737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C888A5751C0640330044E737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8A820521C1B92B200BEC46C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		C8CA83B01C06681500735B23 /* ui-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ui-icons.ttf"; sourceTree = "<group>"; };
 		C8CA83B31C06686900735B23 /* ui-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ui-icons.ttf"; sourceTree = "<group>"; };
 		C8F95F351C151992009CCDA5 /* ListItemsChangedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemsChangedDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A820531C1B92B200BEC46C /* iAd.framework in Frameworks */,
 				C87D98FE1C08D79100B87E7B /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,13 +282,14 @@
 		C888A5221C0640330044E737 = {
 			isa = PBXGroup;
 			children = (
-				C87D98FD1C08D79100B87E7B /* CoreData.framework */,
 				C888A52D1C0640330044E737 /* DictationTest */,
 				C888A5421C0640330044E737 /* DictationTestTests */,
 				C888A54D1C0640330044E737 /* DictationTestUITests */,
 				C888A5571C0640330044E737 /* DictationTest WatchKit App */,
 				C888A5661C0640330044E737 /* DictationTest WatchKit Extension */,
 				C888A52C1C0640330044E737 /* Products */,
+				C87D98FD1C08D79100B87E7B /* CoreData.framework */,
+				C8A820521C1B92B200BEC46C /* iAd.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +308,7 @@
 		C888A52D1C0640330044E737 /* DictationTest */ = {
 			isa = PBXGroup;
 			children = (
+				C8A820541C1B9E8200BEC46C /* Extensions */,
 				C85799751C0D12E200EE5235 /* Watch Connectivity */,
 				C85799701C0D0FC000EE5235 /* Data Stores */,
 				C888A5351C0640330044E737 /* Assets.xcassets */,
@@ -371,6 +376,13 @@
 				C888A5681C0640330044E737 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C8A820541C1B9E8200BEC46C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		C8CA83AF1C06680400735B23 /* Resources */ = {

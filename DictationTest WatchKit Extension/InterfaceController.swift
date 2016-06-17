@@ -25,23 +25,37 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-
-        // Fetch objects from Core Data
+        
+        // Establish the WatchConnectivity Session
         let session = WCSession.defaultSession()
         session.delegate = self
         session.activateSession()
         
+        // Fetch objects from Core Data
         listItems = []
         for listItem in ListItemStore.listItems {
             let newItem = WKPickerItem()
             newItem.title = listItem
             listItems.append(newItem)
         }
-        
+        hideDisplays()
+        updateListItems()
+        pickerItemSelected(0)
+    }
+
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
         hideDisplays()
         updateListItems()
         ListItemStore.addListItemObserver(self)
-        pickerItemSelected(0)
+        animateWithDuration(1.0, animations: {
+            self.showDisplays()
+        })
+    }
+    
+    override func didDeactivate() {
+        ListItemStore.removeListItemObserver(self)
     }
     
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
@@ -60,25 +74,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.list = listName
         }
     }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-        hideDisplays()
-        animateWithDuration(1.0, animations: {
-            self.showDisplays()
-        })
-    }
-    
-    override func willDisappear() {
-        hideDisplays()
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-        hideDisplays()
-    }
     
     func showDisplays() {
         self.textInputSpacerGroup.setWidth(0)
@@ -92,7 +87,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     @IBAction func inputButtonTapped() {
         let suggestions = ["Milk", "Eggs", "Bread", "Cereal", "Peanut Butter",]
-        presentTextInputControllerWithSuggestions(suggestions, allowedInputMode: .AllowAnimatedEmoji) { input in
+        presentTextInputControllerWithSuggestions(suggestions, allowedInputMode: .AllowEmoji) { input in
             if let words = input as? [String] {
                 for word in words {
                     if word.characters.count > 0 {
@@ -105,9 +100,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     }
                 }
                 self.updateListItems()
-            } //else if let animatedEmoji = input as? [NSData] {
-//                let image = UIImage(data: animatedEmoji.first ?? NSData())
-            //}
+            }
         }
     }
     
@@ -118,6 +111,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         ]
         WCSession.defaultSession().transferUserInfo(userInfo)
     }
+    
     @IBAction func pickerItemSelected(value: Int) {
         removeItemIndex = value
     }
@@ -139,27 +133,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func updateListItems() {
-        listItems = listItems.sort(){
-            if $0.title?.compare($1.title!) == .OrderedAscending {
-                return true
-            }
-            return false
-        }
         listPicker.setItems(listItems)
     }
 }
 
 extension InterfaceController: ListItemsChangedDelegate {
     func listItemsDidChange(items: [String], list: String) {
-        dispatch_async(dispatch_get_main_queue(), {
-            self.listItems = []
+        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.listItems = []
             for item in items {
                 let pickerItem = WKPickerItem()
                 pickerItem.title = item
-                self.listItems.append(pickerItem)
+                weakSelf.listItems.append(pickerItem)
             }
-            self.list = list
-            self.updateListItems()
+            weakSelf.list = list
+            weakSelf.updateListItems()
         })
     }
 }

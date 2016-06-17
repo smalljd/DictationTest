@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import WatchConnectivity
+import iAd
 
 class ListItemsViewController: UIViewController {
 
@@ -24,13 +25,14 @@ class ListItemsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = list?.title
-        tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.delegate = self
-        tableView.dataSource = self
         
         ListStore.defaultStore.addListItemChangeObserver(self)
         ListStore.defaultStore.fetchListItems(list!)
         newItemTextField.delegate = self
+        
+        configureTableView()
+        
+        addBannerViewToTheBottomOfTheListItemsTableView()
         
         addItemView.layer.borderColor = UIColor.lightGrayColor().CGColor
         addItemView.layer.borderWidth = 1.0
@@ -41,6 +43,26 @@ class ListItemsViewController: UIViewController {
         if let _ = list {
             sendListItemsToWatch(listItems)
         }
+    }
+    
+    private func configureTableView() {
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 25.0
+    }
+    
+    private func addBannerViewToTheBottomOfTheListItemsTableView() {
+        let adBanner = appDelegate.sharedBannerView
+        adBanner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(adBanner)
+        
+        let bottomConstraint = NSLayoutConstraint(item: adBanner, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: adBanner, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1, constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: adBanner, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1, constant: 0)
+        
+        view.addConstraints([bottomConstraint, leadingConstraint, trailingConstraint])
     }
     
     func configureWithList(list: ListModel) {
@@ -88,6 +110,8 @@ class ListItemsViewController: UIViewController {
             return
         }
         ListStore.defaultStore.addListItem(name, list: list)
+        tableView.reloadData() // Re-sizes the cell based on the content size
+        sendListItemsToWatch(listItems)
     }
     
     func presentAddItemView() {
@@ -100,6 +124,7 @@ class ListItemsViewController: UIViewController {
         UIView.animateWithDuration(0.6, animations: {
             self.addItemView.alpha = 1.0
             self.tableView.alpha = 0.25
+            self.view.bringSubviewToFront(self.addItemView) 
             }, completion: { finished in
                 self.newItemTextField.becomeFirstResponder()
         })
@@ -114,8 +139,10 @@ class ListItemsViewController: UIViewController {
                 self.addItemView.hidden = true
                 self.newItemTextField.text = ""
                 self.newItemTextField.resignFirstResponder()
+                self.view.sendSubviewToBack(self.addItemView)
         })
     }
+    
 }
 
 extension ListItemsViewController: UITableViewDataSource {
@@ -135,6 +162,10 @@ extension ListItemsViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if listItems.count == 0 {
             return 1
@@ -148,11 +179,38 @@ extension ListItemsViewController: UITableViewDataSource {
 }
 
 extension ListItemsViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if listItems.count == 0 {
-            return 175.0
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        return nil
+        // TODO: Implement this
+    }
+    
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+        // TODO: Implement this
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .Delete
+        // TODO: Make this smart so it can be edited too
+    }
+    
+    // Enable re-ordering
+    func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+        return proposedDestinationIndexPath
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let list = list else {
+            return
         }
-        return 25.0
+        
+        if editingStyle == .Delete {
+            ListStore.defaultStore.removeListItem(listItems[indexPath.row].title ?? "", list: list)
+        }
     }
 }
 
@@ -164,6 +222,7 @@ extension ListItemsViewController: UITextFieldDelegate {
             return false
         }
         textField.resignFirstResponder()
+        dismissAddItemView()
         return true
     }
 }
@@ -175,11 +234,27 @@ extension ListItemsViewController: ListItemChangeDelegate {
         }
         
         dispatch_async(dispatch_get_main_queue(), {
-            if list.title! == currentList.title! {
+            if let listTitle = list.title, currentTitle = currentList.title where listTitle.compare(currentTitle) == .OrderedSame {
                 self.listItems = items
                 self.sendListItemsToWatch(items)
                 self.tableView.reloadData()
-            }  
+            }
         })
+    }
+}
+
+extension ListItemsViewController {
+    override func previewActionItems() -> [UIPreviewActionItem] {
+        
+        if listItems.count > 0 {
+            let clearListAction = UIPreviewAction(title: "Clear List", style: .Destructive, handler: { (action, viewController) in
+                if let listItemsVC = viewController as? ListItemsViewController, list = listItemsVC.list {
+                    ListStore.defaultStore.removeAllListItems(list)
+                }
+            })
+            
+            return [clearListAction]
+        }
+        return []
     }
 }

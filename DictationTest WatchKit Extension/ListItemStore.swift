@@ -25,4 +25,14 @@ public class ListItemStore {
     class func addListItemObserver(observer: ListItemsChangedDelegate) {
         listItemObservers.append(observer)
     }
+    
+    class func removeListItemObserver(observer: ListItemsChangedDelegate) {
+        if let object = observer as? NSObject {
+            for (index, item) in listItemObservers.enumerate() {
+                if let observerImplementation = item as? AnyObject where object.isEqual(observerImplementation) {
+                    listItemObservers.removeAtIndex(index)
+                }
+            }
+        }
+    }
 }

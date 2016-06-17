@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 import WatchConnectivity
+import iAd
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate, ADBannerViewDelegate {
     
     var window: UIWindow?
+    var sharedBannerView = ADBannerView(adType: .Banner)
     
     enum ShortcutItem: String {
         case NewList
@@ -28,11 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-            handleShortcutItem(shortcutItem)
-            return false
-        }
-        
         // Override point for customization after application launch.
         if WCSession.isSupported() {
             let session = WCSession.defaultSession()
@@ -41,8 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         }
         
         ListStore.defaultStore.fetchLists()
+        sharedBannerView.delegate = self
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            handleShortcutItem(shortcutItem)
+            return false
+        }
         
         return true
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        print("Failed to load the banner view, we should hide the banner now.")
     }
     
     func handleShortcutItem(shortcut: UIApplicationShortcutItem) -> Bool {
