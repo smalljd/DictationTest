@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ListItemChangeDelegate {
-    func listItemsDidChange(list: ListModel, items: [ListItem])
+    func listItemsDidChange(_ list: ListModel, items: [ListItem])
 }

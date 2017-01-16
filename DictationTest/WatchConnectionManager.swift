@@ -9,14 +9,14 @@
 import Foundation
 import WatchConnectivity
 
-public class WatchConnectionManager: NSObject { // , WCSessionDelegate
+open class WatchConnectionManager: NSObject { // , WCSessionDelegate
     
     var listDelegates = [ListChangeDelegate]()
     var listItemDelegates = [ListItemChangeDelegate]()
     
-    private let session: WCSession? = WCSession.isSupported() ?  WCSession.defaultSession() : nil
+    fileprivate let session: WCSession? = WCSession.isSupported() ?  WCSession.default() : nil
     
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
     
@@ -25,24 +25,24 @@ public class WatchConnectionManager: NSObject { // , WCSessionDelegate
             return
         }
 //        session.delegate = self
-        session.activateSession()
+        session.activate()
     }
     
-    func addListDelegate(delegate: ListChangeDelegate) {
+    func addListDelegate(_ delegate: ListChangeDelegate) {
         listDelegates.append(delegate)
     }
     
-    public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+    open func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
         if let action = userInfo["action"] as? String {
             // Remove Item From List
-            if action.caseInsensitiveCompare("delete") == .OrderedSame {
+            if action.caseInsensitiveCompare("delete") == .orderedSame {
                 let listItem = userInfo["listItem"] as! String
                 let listName = userInfo["list"] as! String
                 if let list = ListStore.defaultStore.listWithName(listName) {
                     ListStore.defaultStore.removeListItem(listItem, list: list)
                 }
             // Add an item to the list
-            } else if action.caseInsensitiveCompare("insert") == .OrderedSame {
+            } else if action.caseInsensitiveCompare("insert") == .orderedSame {
                 let listItem = userInfo["listItem"] as! String
                 let listName = userInfo["list"] as! String
                 if let list = ListStore.defaultStore.listWithName(listName) {

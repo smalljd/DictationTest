@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ListItemsChangedDelegate {
-    func listItemsDidChange(items: [String], list: String)
+    func listItemsDidChange(_ items: [String], list: String)
 }

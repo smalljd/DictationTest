@@ -14,8 +14,8 @@ class GlanceController: WKInterfaceController {
 
     @IBOutlet var listTitleLabel: WKInterfaceLabel!
     @IBOutlet var numberOfListItemsLabel: WKInterfaceLabel!
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         // Configure interface objects here.
         ListItemStore.addListItemObserver(self)
@@ -36,7 +36,7 @@ class GlanceController: WKInterfaceController {
 }
 
 extension GlanceController: ListItemsChangedDelegate {
-    func listItemsDidChange(items: [String], list: String) {
+    func listItemsDidChange(_ items: [String], list: String) {
         numberOfListItemsLabel.setText("\(items.count)")
         listTitleLabel.setText(list)
     }

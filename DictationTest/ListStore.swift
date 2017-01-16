@@ -10,24 +10,24 @@ import Foundation
 import UIKit
 import CoreData
 
-public class ListStore {
+open class ListStore {
     
     static let defaultStore = ListStore()
     var lists = [ListModel]()
     var listChangeObservers = [ListChangeDelegate]()
     var listItemChangeObservers = [ListItemChangeDelegate]()
-    var fetchedResultsController: NSFetchedResultsController
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     
     // Core Data Initialization
-    private let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    private let managedContext: NSManagedObjectContext
-    private let listEntityName = "ListModel"
-    private let listItemEntityName = "ListItem"
-    private var fetchRequest: NSFetchRequest
-    private let listSortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-    private let listItemSortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    fileprivate let managedContext: NSManagedObjectContext
+    fileprivate let listEntityName = "ListModel"
+    fileprivate let listItemEntityName = "ListItem"
+    fileprivate var fetchRequest: NSFetchRequest<NSFetchRequestResult>
+    fileprivate let listSortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+    fileprivate let listItemSortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
     
-    private init() {
+    fileprivate init() {
         managedContext = appDelegate.managedObjectContext
         fetchRequest = NSFetchRequest(entityName: listEntityName)
         fetchRequest.sortDescriptors = listSortDescriptors
@@ -38,15 +38,15 @@ public class ListStore {
     }
     
     
-    func insertNewList(title: String) {
-        let listEntity = NSEntityDescription.entityForName(listEntityName, inManagedObjectContext: managedContext)
+    func insertNewList(_ title: String) {
+        let listEntity = NSEntityDescription.entity(forEntityName: listEntityName, in: managedContext)
         
-        let newList = ListModel(entity: listEntity!, insertIntoManagedObjectContext: managedContext) as ListModel
+        let newList = ListModel(entity: listEntity!, insertInto: managedContext) as ListModel
         
         newList.title = title
         lists.append(newList)
-        lists = lists.sort({
-            if $0.title!.compare($1.title!) == .OrderedAscending {
+        lists = lists.sorted(by: {
+            if $0.title!.compare($1.title!) == .orderedAscending {
                 return true
             }
             return false
@@ -55,11 +55,11 @@ public class ListStore {
         save()
     }
     
-    func removeList(title: String) {
-        for (index, list) in lists.enumerate() {
-            if list.title!.compare(title) == .OrderedSame {
-                managedContext.deleteObject(list)
-                lists.removeAtIndex(index)
+    func removeList(_ title: String) {
+        for (index, list) in lists.enumerated() {
+            if list.title!.compare(title) == .orderedSame {
+                managedContext.delete(list)
+                lists.remove(at: index)
                 // TODO: Remove all related elements in ListItems model
                 save()
             }
@@ -69,7 +69,7 @@ public class ListStore {
     
     func removeAllLists() {
         for list in lists {
-            managedContext.deleteObject(list)
+            managedContext.delete(list)
             lists = []
             save()
         }
@@ -95,7 +95,7 @@ public class ListStore {
         }
     }
     
-    func addListObserver(delegate: ListChangeDelegate) {
+    func addListObserver(_ delegate: ListChangeDelegate) {
         listChangeObservers.append(delegate)
     }
     
@@ -103,16 +103,16 @@ public class ListStore {
         listChangeObservers = [ListChangeDelegate]()
     }
     
-    func updateObserversOfListChange(lists: [ListModel]) {
+    func updateObserversOfListChange(_ lists: [ListModel]) {
         for observer in listChangeObservers {
             observer.listsDidChange(lists)
         }
     }
     // TODO: Figure out how to remove an observer
     
-    func listWithName(name: String) -> ListModel? {
+    func listWithName(_ name: String) -> ListModel? {
         for list in lists {
-            if list.title!.compare(name) == .OrderedSame {
+            if list.title!.compare(name) == .orderedSame {
                 return list
             }
         }
@@ -123,8 +123,8 @@ public class ListStore {
 // MARK: List Items
 extension ListStore {
     
-    func fetchListItems(list: ListModel) {
-        let listItemsFetchRequest = NSFetchRequest(entityName: "ListItem")
+    func fetchListItems(_ list: ListModel) {
+        let listItemsFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ListItem")
         let predicate = NSPredicate(format: "list.title like %@", argumentArray: [list.title!])
         listItemsFetchRequest.predicate = predicate
         listItemsFetchRequest.sortDescriptors = listItemSortDescriptors
@@ -145,12 +145,12 @@ extension ListStore {
         }
     }
     
-    func addListItem(name: String, list: ListModel) {
+    func addListItem(_ name: String, list: ListModel) {
         let context = appDelegate.managedObjectContext
-        let listItemsEntity = NSEntityDescription.entityForName("ListItem", inManagedObjectContext: context)
-        let newItem = ListItem(entity: listItemsEntity!, insertIntoManagedObjectContext: context) as ListItem
+        let listItemsEntity = NSEntityDescription.entity(forEntityName: "ListItem", in: context)
+        let newItem = ListItem(entity: listItemsEntity!, insertInto: context) as ListItem
         newItem.title = name
-        newItem.creationDate = NSDate()
+        newItem.creationDate = Date()
         
         if let itemSet = list.listItems, var listItems = Array(itemSet) as? [ListItem] {
             listItems.append(newItem)
@@ -164,12 +164,12 @@ extension ListStore {
         save()
     }
     
-    func removeListItem(itemName: String, list: ListModel) {
+    func removeListItem(_ itemName: String, list: ListModel) {
         if let itemSet = list.listItems, var listItems = Array(itemSet) as? [ListItem] {
             print("List Items: \(listItems)")
-            for (index, element) in listItems.enumerate() {
-                if element.title!.compare(itemName) == .OrderedSame {
-                    listItems.removeAtIndex(index)
+            for (index, element) in listItems.enumerated() {
+                if element.title!.compare(itemName) == .orderedSame {
+                    listItems.remove(at: index)
                     list.listItems = NSOrderedSet(array: listItems)
                     updateListItemObserversWithChange(list, listItems: listItems)
                     save()
@@ -178,21 +178,21 @@ extension ListStore {
         }
     }
     
-    func removeAllListItems(list: ListModel) {
+    func removeAllListItems(_ list: ListModel) {
         list.listItems = nil
         updateListItemObserversWithChange(list, listItems: [])
         save()
     }
     
-    func addListItemChangeObserver(observer: ListItemChangeDelegate) {
+    func addListItemChangeObserver(_ observer: ListItemChangeDelegate) {
         listItemChangeObservers.append(observer)
     }
     
-    func removeListItemObserver(observer: ListItemChangeDelegate) {
+    func removeListItemObserver(_ observer: ListItemChangeDelegate) {
         if let object = observer as? NSObject {
-            for (index, item) in listItemChangeObservers.enumerate() {
-                if let observerImplementation = item as? AnyObject where object.isEqual(observerImplementation) {
-                    listItemChangeObservers.removeAtIndex(index)
+            for (index, item) in listItemChangeObservers.enumerated() {
+                if let observerImplementation = item as? AnyObject, object.isEqual(observerImplementation) {
+                    listItemChangeObservers.remove(at: index)
                 }
             }
         }
@@ -202,7 +202,7 @@ extension ListStore {
         listItemChangeObservers = []
     }
     
-    func updateListItemObserversWithChange(list: ListModel, listItems: [ListItem]) {
+    func updateListItemObserversWithChange(_ list: ListModel, listItems: [ListItem]) {
         for observer in listItemChangeObservers {
             observer.listItemsDidChange(list, items: listItems)
         }

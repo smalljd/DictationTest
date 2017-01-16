@@ -16,6 +16,6 @@ extension ListItem {
 
     @NSManaged var title: String?
     @NSManaged var list: ListModel?
-    @NSManaged var creationDate: NSDate?
+    @NSManaged var creationDate: Date?
 
 }

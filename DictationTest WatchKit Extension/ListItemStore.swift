@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class ListItemStore {
+open class ListItemStore {
     static var listItems = [String]()
     static var list = ""
     
-    static private var listItemObservers = [ListItemsChangedDelegate]()
+    static fileprivate var listItemObservers = [ListItemsChangedDelegate]()
     
-    class func setListItems(items: [String], list: String) {
+    class func setListItems(_ items: [String], list: String) {
         listItems = items
         self.list = list
         for observer in listItemObservers {
@@ -22,15 +22,15 @@ public class ListItemStore {
         }
     }
     
-    class func addListItemObserver(observer: ListItemsChangedDelegate) {
+    class func addListItemObserver(_ observer: ListItemsChangedDelegate) {
         listItemObservers.append(observer)
     }
     
-    class func removeListItemObserver(observer: ListItemsChangedDelegate) {
+    class func removeListItemObserver(_ observer: ListItemsChangedDelegate) {
         if let object = observer as? NSObject {
-            for (index, item) in listItemObservers.enumerate() {
-                if let observerImplementation = item as? AnyObject where object.isEqual(observerImplementation) {
-                    listItemObservers.removeAtIndex(index)
+            for (index, item) in listItemObservers.enumerated() {
+                if let observerImplementation = item as? AnyObject, object.isEqual(observerImplementation) {
+                    listItemObservers.remove(at: index)
                 }
             }
         }

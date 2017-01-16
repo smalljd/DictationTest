@@ -23,13 +23,13 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
     var list: String?
     var removeItemIndex: Int?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         // Establish the WatchConnectivity Session
-        let session = WCSession.defaultSession()
+        let session = WCSession.default()
 //        session.delegate = self
-        session.activateSession()
+        session.activate()
         
         // Fetch objects from Core Data
         listItems = []
@@ -49,7 +49,7 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
         hideDisplays()
         updateListItems()
         ListItemStore.addListItemObserver(self)
-        animateWithDuration(1.0, animations: {
+        animate(withDuration: 1.0, animations: {
             self.showDisplays()
         })
     }
@@ -58,7 +58,7 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
         ListItemStore.removeListItemObserver(self)
     }
     
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         if let items = applicationContext["listItems"] as? [String] {
             listItems = []
             for itemName in items {
@@ -87,7 +87,7 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
 
     @IBAction func inputButtonTapped() {
         let suggestions = ["Milk", "Eggs", "Bread", "Cereal", "Peanut Butter",]
-        presentTextInputControllerWithSuggestions(suggestions, allowedInputMode: .AllowEmoji) { input in
+        presentTextInputController(withSuggestions: suggestions, allowedInputMode: .allowEmoji) { input in
             if let words = input as? [String] {
                 for word in words {
                     if word.characters.count > 0 {
@@ -104,15 +104,15 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
         }
     }
     
-    func addItemToList(itemName: String, listName: String) {
+    func addItemToList(_ itemName: String, listName: String) {
         let userInfo = ["action": "insert",
             "listItem": itemName,
             "list": listName,
         ]
-        WCSession.defaultSession().transferUserInfo(userInfo)
+        WCSession.default().transferUserInfo(userInfo)
     }
     
-    @IBAction func pickerItemSelected(value: Int) {
+    @IBAction func pickerItemSelected(_ value: Int) {
         removeItemIndex = value
     }
     
@@ -125,9 +125,9 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
                     "listItem": itemToRemove,
                     "list": listName,
                 ]
-                WCSession.defaultSession().transferUserInfo(userInfo)
+                WCSession.default().transferUserInfo(userInfo)
             }
-            listItems.removeAtIndex(removeItemIndex)
+            listItems.remove(at: removeItemIndex)
             updateListItems()
         }
     }
@@ -138,8 +138,8 @@ class InterfaceController: WKInterfaceController { //, WCSessionDelegate
 }
 
 extension InterfaceController: ListItemsChangedDelegate {
-    func listItemsDidChange(items: [String], list: String) {
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+    func listItemsDidChange(_ items: [String], list: String) {
+        DispatchQueue.main.async(execute: { [weak self] in
             guard let weakSelf = self else {
                 return
             }

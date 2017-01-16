@@ -8,6 +8,6 @@
 
 import UIKit
 
-public class ListTableViewCell: UITableViewCell {
+open class ListTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
 }
