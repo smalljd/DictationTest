@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { // WCSessionDelegate, AD
         print("Failed to load the banner view, we should hide the banner now.")
     }
     
+    @discardableResult
     func handleShortcutItem(_ shortcut: UIApplicationShortcutItem) -> Bool {
         let shortcutType = shortcut.type
         

@@ -29,7 +29,7 @@ open class ListItemStore {
     class func removeListItemObserver(_ observer: ListItemsChangedDelegate) {
         if let object = observer as? NSObject {
             for (index, item) in listItemObservers.enumerated() {
-                if let observerImplementation = item as? AnyObject, object.isEqual(observerImplementation) {
+                if object.isEqual(item) {
                     listItemObservers.remove(at: index)
                 }
             }

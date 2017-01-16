@@ -191,7 +191,7 @@ extension ListStore {
     func removeListItemObserver(_ observer: ListItemChangeDelegate) {
         if let object = observer as? NSObject {
             for (index, item) in listItemChangeObservers.enumerated() {
-                if let observerImplementation = item as? AnyObject, object.isEqual(observerImplementation) {
+                if object.isEqual(item) {
                     listItemChangeObservers.remove(at: index)
                 }
             }

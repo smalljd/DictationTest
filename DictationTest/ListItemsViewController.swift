@@ -54,9 +54,9 @@ class ListItemsViewController: UIViewController {
     }
     
     fileprivate func addBannerViewToTheBottomOfTheListItemsTableView() {
-        let adBanner = appDelegate.sharedBannerView
-        adBanner?.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(adBanner!)
+        let adBanner = appDelegate.sharedBannerView ?? ADBannerView()
+        adBanner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(adBanner)
         
         let bottomConstraint = NSLayoutConstraint(item: adBanner, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
         let leadingConstraint = NSLayoutConstraint(item: adBanner, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
@@ -102,7 +102,7 @@ class ListItemsViewController: UIViewController {
     
     
     @IBAction func backButtonTapped(_ sender: AnyObject) {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     fileprivate func addItemWithName(_ name: String) {
