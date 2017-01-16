@@ -9,7 +9,7 @@
 import Foundation
 import WatchConnectivity
 
-public class WatchConnectionManager: NSObject, WCSessionDelegate {
+public class WatchConnectionManager: NSObject { // , WCSessionDelegate
     
     var listDelegates = [ListChangeDelegate]()
     var listItemDelegates = [ListItemChangeDelegate]()
@@ -24,7 +24,7 @@ public class WatchConnectionManager: NSObject, WCSessionDelegate {
         guard let session = session else {
             return
         }
-        session.delegate = self
+//        session.delegate = self
         session.activateSession()
     }
     

@@ -11,7 +11,7 @@ import WatchConnectivity
 import Foundation
 
 
-class InterfaceController: WKInterfaceController, WCSessionDelegate {
+class InterfaceController: WKInterfaceController { //, WCSessionDelegate
 
     var listItems = [WKPickerItem]()
     @IBOutlet var inputGroup: WKInterfaceGroup!
@@ -28,7 +28,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         // Establish the WatchConnectivity Session
         let session = WCSession.defaultSession()
-        session.delegate = self
+//        session.delegate = self
         session.activateSession()
         
         // Fetch objects from Core Data

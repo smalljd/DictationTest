@@ -189,7 +189,7 @@ extension ListItemsViewController: UITableViewDelegate {
         // TODO: Implement this
     }
     
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath?) {
         // TODO: Implement this
     }
     

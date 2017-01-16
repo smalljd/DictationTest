@@ -12,7 +12,7 @@ import WatchConnectivity
 import iAd
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate, ADBannerViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate { // WCSessionDelegate, ADBannerViewDelegate
     
     var window: UIWindow?
     var sharedBannerView = ADBannerView(adType: .Banner)
@@ -33,12 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate, ADBann
         // Override point for customization after application launch.
         if WCSession.isSupported() {
             let session = WCSession.defaultSession()
-            session.delegate = self
+//            session.delegate = self
             session.activateSession()
         }
         
         ListStore.defaultStore.fetchLists()
-        sharedBannerView.delegate = self
+//        sharedBannerView.delegate = self
         
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
             handleShortcutItem(shortcutItem)
